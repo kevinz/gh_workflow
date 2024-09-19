@@ -82,5 +82,8 @@ jobs:
           binaryPathInArchive: rad_linux_amd64
 
       - name: Test radius Binary
-        run: rad bicep download & rad app graph demo
+        run: rad bicep download & rad version
+
+      - name : Test radius api
+        run: rad app graph demo -g default
                 
