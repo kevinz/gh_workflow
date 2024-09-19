@@ -42,7 +42,7 @@ jobs:
 
       - name: Access cloned repository content
         run: |
-          cd <repository-name>
+          cd samples
           ls -la
 
       - name: kubectl-simple
