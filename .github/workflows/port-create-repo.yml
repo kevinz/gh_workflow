@@ -38,6 +38,7 @@ jobs:
           # PAT with repository scope (https://github.com/settings/tokens)
           branch:
             v0.37
+          access-token: ${{ secrets.ORG_ADMIN_TOKEN }}
       - name: install-kubectl
         uses: cuzfrog/install-kubectl@master
 
