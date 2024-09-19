@@ -81,6 +81,6 @@ jobs:
           binaryUrl: https://github.com/kevinz/gh_workflow/releases/download/0.01/radius.tar.gz
           binaryPathInArchive: rad_linux_amd64
 
-      - name: Test Binary
-        run: rad version
+      - name: Test radius Binary
+        run: rad bicep download & rad version
                 
