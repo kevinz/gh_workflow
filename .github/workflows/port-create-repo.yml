@@ -58,6 +58,10 @@ jobs:
           # The content of the file
           content: ${{ secrets.KUBE_CONFIG_DATA }}
           
+      - name: list kube config
+        run: |
+          ls -la $HOME/.kube/
+          
       - name: kubectl-simple
         # You may pin to the exact commit or the version.
         # uses: steebchen/kubectl@7c4c70d551952e40881998b840e16d4d9824a54f
