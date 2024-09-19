@@ -40,6 +40,10 @@ jobs:
             v0.37
           access-token: ${{ secrets.ORG_ADMIN_TOKEN }}
 
+      - name: Access cloned repository content
+        run: |
+          cd <repository-name>
+          ls -la
 
       - name: kubectl-simple
         # You may pin to the exact commit or the version.
@@ -71,7 +75,7 @@ jobs:
                 client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUd3RUNMWk55UnF5NThNRmMyTktVOG81NXJSci9QajVqekRqY3lpZ1RmRDhvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFOGZudUl3OXF2WjhLMWVFU21VUGVCc1VGMTRSYUtzQjA4U2NKR2o5eElhZXF6cFhnbUdyQQp6MVRGeUcyMXNuc3N0d2pWQlhKb2pZS2xwcFBHRTB6YXdRPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
               
           # kubectl command to run, without the kubectl, e.g. `get pods`
-          command: get pods --all-namespaces
+          command: 
           # Url to download the binaries from, defaults to the official dl.k8s.io url
           binaries-url: # optional
                    
