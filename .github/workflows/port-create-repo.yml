@@ -36,15 +36,9 @@ jobs:
           # Repository name
           repository: https://github.com/radius-project/samples.git
           # PAT with repository scope (https://github.com/settings/tokens)
-      - name: Setup kubectl and plugins
-        uses: marcofranssen/setup-kubectl@v1.0.0   
-        with:
-          # The kubectl version you want to use (defaults to latest stable).
-          kubectlVersion: # optional, default is stable
-          # Install krew to manage kubectl plugins (defaults to false).
-          enablePlugins: # optional, default is false
-          # Install the given plugins (comma or space separated).
-          plugins: # optional, default is 
+      - name: install-kubectl
+        uses: cuzfrog/install-kubectl@master
+
       - name: Create kube context file
         uses: 1arp/create-a-file-action@0.4.5
         with:
