@@ -56,7 +56,7 @@ jobs:
           # The name of the file to be created with extention
           file: 
           # The content of the file
-          content: # default is 
+          content: |
             apiVersion: v1
             clusters:
             - cluster:
