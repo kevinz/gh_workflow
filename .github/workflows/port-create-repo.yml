@@ -105,8 +105,7 @@ jobs:
       - name: Test radius Binary
         run: |
           rad bicep download 
-          rad init
+          rad deploy app.bicep -a ${{ inputs.service_name }}
 
-      - name : Test radius api
-        run: rad app graph demo -g default
+
                 
