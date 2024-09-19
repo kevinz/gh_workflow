@@ -75,7 +75,11 @@ jobs:
           version: # optional, default is true
 
       - name: Ensure kubeconfig in place
-        run: ls /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig & mkdir -p /home/runner/.kube & cp /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig /home/runner/.kube/config  
+        run: | 
+          ls /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig 
+          mkdir -p /home/runner/.kube
+          cp /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig /home/runner/.kube/config
+          cat /home/runner/.kube/config
         
       - name: Setup radius binary
         uses: plinioh/setup-binary-action@v1.0.0
