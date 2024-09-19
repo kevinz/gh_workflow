@@ -34,7 +34,7 @@ jobs:
           # Repository Owner
           owner: 
           # Repository name
-          repository: https://github.com/radius-project/samples.git
+          repository: radius-project/samples
           # PAT with repository scope (https://github.com/settings/tokens)
       - name: install-kubectl
         uses: cuzfrog/install-kubectl@master
