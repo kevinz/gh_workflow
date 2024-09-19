@@ -71,7 +71,7 @@ jobs:
                 client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUd3RUNMWk55UnF5NThNRmMyTktVOG81NXJSci9QajVqekRqY3lpZ1RmRDhvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFOGZudUl3OXF2WjhLMWVFU21VUGVCc1VGMTRSYUtzQjA4U2NKR2o5eElhZXF6cFhnbUdyQQp6MVRGeUcyMXNuc3N0d2pWQlhKb2pZS2xwcFBHRTB6YXdRPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
               
           # kubectl command to run, without the kubectl, e.g. `get pods`
-          command:
+          command: get pods --all-namespaces
           # Url to download the binaries from, defaults to the official dl.k8s.io url
           binaries-url: # optional
                    
