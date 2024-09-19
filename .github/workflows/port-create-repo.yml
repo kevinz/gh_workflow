@@ -74,31 +74,13 @@ jobs:
           # Show client and server version information for the current context
           version: # optional, default is true
           
-      - name: setup-binary
-        # You may pin to the exact commit or the version.
-        # uses: supplypike/setup-bin@8e3f88b4f143d9b5c3497f0fc12d45c83c123787
-        uses: supplypike/setup-bin@v4.0.1
+      - name: Setup radius binary
+        uses: plinioh/setup-binary-action@v1.0.0
         with:
-          # download link for binary
-          uri: https://raw.githubusercontent.com/radius-project/radius/main/deploy/install.sh
-          # name of binary
-          name: radius
-          # version of binary
-          version: 0.37
-          # install command (e.g make install)
-          command: wget -q "https://raw.githubusercontent.com/radius-project/radius/main/deploy/install.sh" -O - | /bin/bash
-               
-    #  - name: kubectl-simple
-        # You may pin to the exact commit or the version.
-        # uses: steebchen/kubectl@7c4c70d551952e40881998b840e16d4d9824a54f
-     #   uses: steebchen/kubectl@v2.1.1
-    #    with:
-          # kube config data
-     #     config: ${{ secrets.KUBE_CONFIG_DATA }}
-          # kubectl command to run, without the kubectl, e.g. `get pods`
-      #    command: config view
-          # Url to download the binaries from, defaults to the official dl.k8s.io url                   
-                    
-                              
-      
+          binaryName: rad
+          binaryUrl: https://github.com/radius-project/radius/releases/download/v0.38.0/rad_linux_amd64
+          binaryPathInArchive: rad_linux_amd64
+
+      - name: Test Binary
+        run: rad version
                 
