@@ -49,30 +49,30 @@ jobs:
       - name: KUBECONFIG for Service Account (SA)
       # You may pin to the exact commit or the version.
       # uses: vbem/kubeconfig4sa@f3068dc83ba7f621a136d77e071a7bcf6f818db7
-      uses: vbem/kubeconfig4sa@v1.0.4
-      with:
-        # K8s cluster API server URL
-        server: https://34.172.248.202:37757
-        # K8s cluster Certificate Authority data base64
-        ca-base64: ${{ secrets.K8S_CA_BASE64 }}
-        # K8s cluster name in kubeconfig file
-        cluster: # optional, default is 
-        # Service Account bearer token
-        token: ${{ secrets.K8S_SA_TOKEN }}
-        # Service Account name in kubeconfig file
-        sa: deployer
-        # Context name in kubeconfig file
-        context: # optional, default is 
-        # Context namespace in kubeconfig file
-        namespace: default
-        # Set as current-context in kubeconfig file
-        current: # optional, default is true
-        # Path of kubeconfig file
-        kubeconfig: # optional, default is 
-        # Set the KUBECONFIG environment variable available to subsequent steps
-        export: # optional, default is true
-        # Show client and server version information for the current context
-        version: # optional, default is true
+        uses: vbem/kubeconfig4sa@v1.0.4
+        with:
+          # K8s cluster API server URL
+          server: https://34.172.248.202:37757
+          # K8s cluster Certificate Authority data base64
+          ca-base64: ${{ secrets.K8S_CA_BASE64 }}
+          # K8s cluster name in kubeconfig file
+          cluster: # optional, default is 
+          # Service Account bearer token
+          token: ${{ secrets.K8S_SA_TOKEN }}
+          # Service Account name in kubeconfig file
+          sa: deployer
+          # Context name in kubeconfig file
+          context: # optional, default is 
+          # Context namespace in kubeconfig file
+          namespace: default
+          # Set as current-context in kubeconfig file
+          current: # optional, default is true
+          # Path of kubeconfig file
+          kubeconfig: # optional, default is 
+          # Set the KUBECONFIG environment variable available to subsequent steps
+          export: # optional, default is true
+          # Show client and server version information for the current context
+          version: # optional, default is true
           
       - name: setup-binary
         # You may pin to the exact commit or the version.
