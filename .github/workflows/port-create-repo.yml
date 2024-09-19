@@ -52,9 +52,7 @@ jobs:
         uses: vbem/kubeconfig4sa@v1.0.4
         with:
           # K8s cluster API server URL
-          server: |
-            https://34.172.248.202:37757
-            insecure-skip-tls-verify: true
+          server: https://34.172.248.202:37757
           # K8s cluster Certificate Authority data base64
           ca-base64: ${{ secrets.K8S_CA_BASE64 }}
           # K8s cluster name in kubeconfig file
@@ -81,6 +79,7 @@ jobs:
           ls /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig 
           mkdir -p /home/runner/.kube
           kubectl config use-context deployer@34.172.248.202
+          sed -i '/server:.*34\.172\.248\.202/ a\      insecure-skip-tls-verify: true' /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
           cp /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig /home/runner/.kube/config
           cat /home/runner/.kube/config
 
