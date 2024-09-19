@@ -78,6 +78,7 @@ jobs:
         run: | 
           ls /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig 
           mkdir -p /home/runner/.kube
+          kubectl config set-context deployer@34.172.248.202
           cp /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig /home/runner/.kube/config
           cat /home/runner/.kube/config
 
@@ -86,8 +87,8 @@ jobs:
         run: |
           export KUBE_CONFIG_PATH=/home/runner/.kube/config
           kubectl config current-context
-          kubectl config set-context deployer@34.172.248.202
           cat /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
+          cat /home/runner/.kube/config
           kubectl get deployments -n radius-system
 
         
