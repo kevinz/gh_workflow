@@ -105,7 +105,7 @@ jobs:
       - name: Test radius Binary
         run: |
           rad bicep download 
-          pwd
+          cd samples/samples/demo
           ls -al
           rad deploy app.bicep -a ${{ inputs.service_name }} -g default -e default
 
