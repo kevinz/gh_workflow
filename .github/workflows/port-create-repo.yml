@@ -84,8 +84,10 @@ jobs:
 
       - name: Export kube env
         run: |
-          export KUBE_CONFIG_PATH=/home/runner/.kube/config       
+          export KUBE_CONFIG_PATH=/home/runner/.kube/config
+          kubectl config current-context
           kubectl config set-context deployer@34.172.248.202
+          cat /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
           kubectl get deployments -n radius-system
 
         
