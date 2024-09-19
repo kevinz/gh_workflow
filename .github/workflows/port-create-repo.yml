@@ -82,5 +82,5 @@ jobs:
           binaryPathInArchive: rad_linux_amd64
 
       - name: Test radius Binary
-        run: rad bicep download & rad version
+        run: rad bicep download & rad app graph demo
                 
