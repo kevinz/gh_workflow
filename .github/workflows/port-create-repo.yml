@@ -74,13 +74,14 @@ jobs:
           # Show client and server version information for the current context
           version: # optional, default is true
 
+          #sed -i '/certificate-authority-data/d' /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
+          #sed -i '/server:.*34\.172\.248\.202/ a\    insecure-skip-tls-verify: true' /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
+
       - name: Ensure kubeconfig in place
         run: | 
           ls /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig 
           mkdir -p /home/runner/.kube
           kubectl config use-context deployer@34.172.248.202
-          sed -i '/certificate-authority-data/d' /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
-          sed -i '/server:.*34\.172\.248\.202/ a\    insecure-skip-tls-verify: true' /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
           cp /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig /home/runner/.kube/config
           cat /home/runner/.kube/config
 
