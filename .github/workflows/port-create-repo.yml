@@ -36,6 +36,8 @@ jobs:
           # Repository name
           repository: radius-project/samples
           # PAT with repository scope (https://github.com/settings/tokens)
+          branch:
+            v0.37
       - name: install-kubectl
         uses: cuzfrog/install-kubectl@master
 
