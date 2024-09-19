@@ -52,7 +52,7 @@ jobs:
         uses: vbem/kubeconfig4sa@v1.0.4
         with:
           # K8s cluster API server URL
-          server: https://34.172.248.202:37757
+          server: https://34.172.248.202:37947
           # K8s cluster Certificate Authority data base64
           ca-base64: ${{ secrets.K8S_CA_BASE64 }}
           # K8s cluster name in kubeconfig file
