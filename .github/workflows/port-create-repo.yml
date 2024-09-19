@@ -83,7 +83,9 @@ jobs:
       - name: Export kube env
         run: |
           export KUBE_CONFIG_PATH=/home/runner/.kube/config       
-          cat /home/runner/.kube/config
+          kubectl config current-context
+          kubectl get deployments -n radius-system
+
         
       - name: Setup radius binary
         uses: plinioh/setup-binary-action@v1.0.0
@@ -94,7 +96,9 @@ jobs:
 
 
       - name: Test radius Binary
-        run: rad bicep download & rad version
+        run: |
+          rad bicep download 
+          rad init
 
       - name : Test radius api
         run: rad app graph demo -g default
