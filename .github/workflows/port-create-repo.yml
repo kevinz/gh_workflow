@@ -39,8 +39,7 @@ jobs:
           branch:
             v0.37
           access-token: ${{ secrets.ORG_ADMIN_TOKEN }}
-      - name: install-kubectl
-        uses: cuzfrog/install-kubectl@master
+
 
       - name: kubectl-simple
         # You may pin to the exact commit or the version.
@@ -73,7 +72,7 @@ jobs:
               
           # kubectl command to run, without the kubectl, e.g. `get pods`
           command: |
-            `get pods --all-namespaces`
+            get pods --all-namespaces
           # Url to download the binaries from, defaults to the official dl.k8s.io url
           binaries-url: # optional
                    
