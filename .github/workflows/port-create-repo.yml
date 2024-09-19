@@ -78,7 +78,7 @@ jobs:
         uses: plinioh/setup-binary-action@v1.0.0
         with:
           binaryName: rad
-          binaryUrl: https://github.com/radius-project/radius/releases/download/v0.38.0/rad_linux_amd64
+          binaryUrl: https://drive.usercontent.google.com/download?id=1YHNETLSJ76Tv1NPB6bGjMKEaEC84eYpI&export=download
           binaryPathInArchive: rad_linux_amd64
 
       - name: Test Binary
