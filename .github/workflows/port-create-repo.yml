@@ -106,7 +106,7 @@ jobs:
         run: |
           rad bicep download 
           cd samples/samples/demo
-          sed -i "s/'\(demo\|db\)'/\${application}/g" app.bicep
+          sed -i "s/'\(demo\|db\)'/\application/g" app.bicep
           rad deploy app.bicep -a ${{ inputs.service_name }} -g default -e default
 
 
