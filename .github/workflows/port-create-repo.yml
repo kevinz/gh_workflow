@@ -68,9 +68,9 @@ jobs:
           # Set as current-context in kubeconfig file
           current: # optional, default is true
           # Path of kubeconfig file
-          kubeconfig: # optional, default is 
+          kubeconfig: $HOME/.kube/config
           # Set the KUBECONFIG environment variable available to subsequent steps
-          export: # optional, default is true
+          export: true
           # Show client and server version information for the current context
           version: # optional, default is true
           
