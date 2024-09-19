@@ -32,9 +32,9 @@ jobs:
         uses: GuillaumeFalourd/clone-github-repo-action@v2.3
         with:
           # Repository Owner
-          owner: 
+          owner: radius-project
           # Repository name
-          repository: radius-project/samples
+          repository: samples
           # PAT with repository scope (https://github.com/settings/tokens)
           branch:
             v0.37
