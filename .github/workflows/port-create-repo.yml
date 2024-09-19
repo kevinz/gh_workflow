@@ -73,7 +73,7 @@ jobs:
               
           # kubectl command to run, without the kubectl, e.g. `get pods`
           command: |
-            get pods --all-namespaces
+            `get pods --all-namespaces`
           # Url to download the binaries from, defaults to the official dl.k8s.io url
           binaries-url: # optional
                    
