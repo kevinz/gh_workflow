@@ -44,8 +44,8 @@ jobs:
         run: |
           cd samples
           cd samples/demo
+          mkdir $HOME/.kube
           ls -la
-
 
       - name: Create kube context file
         uses: 1arp/create-a-file-action@0.4.5
@@ -67,7 +67,6 @@ jobs:
         # uses: steebchen/kubectl@7c4c70d551952e40881998b840e16d4d9824a54f
         uses: steebchen/kubectl@v2.1.1
         with:
-
           # kube config data
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           # kubectl command to run, without the kubectl, e.g. `get pods`
