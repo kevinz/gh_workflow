@@ -44,33 +44,61 @@ jobs:
         run: |
           cd samples
           cd samples/demo
-          mkdir $HOME/.kube
           ls -la
-
-      - name: Create kube context file
-        uses: 1arp/create-a-file-action@0.4.5
+          mkdir $HOME/.kube
+      - name: KUBECONFIG for Service Account (SA)
+      # You may pin to the exact commit or the version.
+      # uses: vbem/kubeconfig4sa@f3068dc83ba7f621a136d77e071a7bcf6f818db7
+      uses: vbem/kubeconfig4sa@v1.0.4
+      with:
+        # K8s cluster API server URL
+        server: https://34.172.248.202:37757
+        # K8s cluster Certificate Authority data base64
+        ca-base64: ${{ secrets.K8S_CA_BASE64 }}
+        # K8s cluster name in kubeconfig file
+        cluster: # optional, default is 
+        # Service Account bearer token
+        token: ${{ secrets.K8S_SA_TOKEN }}
+        # Service Account name in kubeconfig file
+        sa: deployer
+        # Context name in kubeconfig file
+        context: # optional, default is 
+        # Context namespace in kubeconfig file
+        namespace: default
+        # Set as current-context in kubeconfig file
+        current: # optional, default is true
+        # Path of kubeconfig file
+        kubeconfig: # optional, default is 
+        # Set the KUBECONFIG environment variable available to subsequent steps
+        export: # optional, default is true
+        # Show client and server version information for the current context
+        version: # optional, default is true
+          
+      - name: setup-binary
+        # You may pin to the exact commit or the version.
+        # uses: supplypike/setup-bin@8e3f88b4f143d9b5c3497f0fc12d45c83c123787
+        uses: supplypike/setup-bin@v4.0.1
         with:
-          # Path from cwd where file is to be created
-          path: # default is 
-            $HOME/.kube/
-          # If the path provided is an absolute path
-          file: config
-          # The content of the file
-          content: ${{ secrets.KUBE_CONFIG_DATA }}
-          
-      - name: list kube config
-        run: |
-          ls -la $HOME/.kube/
-          
-      - name: kubectl-simple
+          # download link for binary
+          uri: https://raw.githubusercontent.com/radius-project/radius/main/deploy/install.sh
+          # name of binary
+          name: radius
+          # version of binary
+          version: 
+          # install command (e.g make install)
+          command: wget -q "https://raw.githubusercontent.com/radius-project/radius/main/deploy/install.sh" -O - | /bin/bash
+          # path to tool in archive
+          subPath: # optional
+               
+    #  - name: kubectl-simple
         # You may pin to the exact commit or the version.
         # uses: steebchen/kubectl@7c4c70d551952e40881998b840e16d4d9824a54f
-        uses: steebchen/kubectl@v2.1.1
-        with:
+     #   uses: steebchen/kubectl@v2.1.1
+    #    with:
           # kube config data
-          config: ${{ secrets.KUBE_CONFIG_DATA }}
+     #     config: ${{ secrets.KUBE_CONFIG_DATA }}
           # kubectl command to run, without the kubectl, e.g. `get pods`
-          command: config view
+      #    command: config view
           # Url to download the binaries from, defaults to the official dl.k8s.io url                   
                     
                               
