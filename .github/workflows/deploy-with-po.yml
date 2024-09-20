@@ -100,6 +100,8 @@ jobs:
         run: |
           rad bicep download 
           cd samples/samples/demo
+          rad workspace create kubernetes default
+          rad workspace switch default
           rad group create ${{ inputs.resource_group }}
           rad group switch ${{ inputs.resource_group }}
           rad env create default 
