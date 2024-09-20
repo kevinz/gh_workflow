@@ -94,7 +94,7 @@ jobs:
         run: |
           rad bicep download 
           cd samples/samples/demo
-          rad resource delete containers  ${{resource_name}}
+          rad resource delete containers  ${{input.resource_name}}
 
 
                 
