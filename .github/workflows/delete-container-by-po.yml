@@ -1,0 +1,100 @@
+name: Delete a radius contaienr
+on:
+  workflow_dispatch:
+    inputs:
+      port_context:
+        required: false
+        description: Includes the action's run id
+      resource_name:
+        required: true
+        description: Includes the action's resource name
+      
+jobs:
+  Delete-container:
+    env:
+      ORG_NAME: kevinz
+    runs-on: ubuntu-latest
+    steps:
+          
+      - name: Clone Github Repo Action
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+        with:
+          # Repository Owner
+          owner: radius-project
+          # Repository name
+          repository: samples
+          # PAT with repository scope (https://github.com/settings/tokens)
+          branch:
+            v0.37
+          access-token: ${{ secrets.ORG_ADMIN_TOKEN }}
+
+      - name: Access cloned repository content
+        run: |
+          cd samples
+          cd samples/demo
+          ls -la
+          mkdir $HOME/.kube
+      - name: KUBECONFIG for Service Account (SA)
+      # You may pin to the exact commit or the version.
+      # uses: vbem/kubeconfig4sa@f3068dc83ba7f621a136d77e071a7bcf6f818db7
+        uses: vbem/kubeconfig4sa@v1.0.4
+        with:
+          # K8s cluster API server URL
+          server: https://34.172.248.202:37947
+          # K8s cluster Certificate Authority data base64
+          ca-base64: ${{ secrets.K8S_CA_BASE64 }}
+          # K8s cluster name in kubeconfig file
+          cluster: # optional, default is 
+          # Service Account bearer token
+          token: ${{ secrets.K8S_SA_TOKEN }}
+          # Service Account name in kubeconfig file
+          sa: deployer
+          # Context name in kubeconfig file
+          context: # optional, default is 
+          # Context namespace in kubeconfig file
+          namespace: default
+          # Set as current-context in kubeconfig file
+          current: # optional, default is true
+          # Path of kubeconfig file
+          kubeconfig: 
+          # Set the KUBECONFIG environment variable available to subsequent steps
+          export: true
+          # Show client and server version information for the current context
+          version: # optional, default is true
+
+          #sed -i '/certificate-authority-data/d' /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
+          #sed -i '/server:.*34\.172\.248\.202/ a\    insecure-skip-tls-verify: true' /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig
+
+      - name: Ensure kubeconfig in place
+        run: | 
+          ls /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig 
+          mkdir -p /home/runner/.kube
+          kubectl config use-context deployer@34.172.248.202
+          cp /home/runner/work/_temp/deployer@34.172.248.202.kubeconfig /home/runner/.kube/config
+          cat /home/runner/.kube/config
+
+
+      - name: Export kube env
+        run: |
+          export KUBE_CONFIG_PATH=/home/runner/.kube/config
+          kubectl config current-context
+          cat /home/runner/.kube/config
+          kubectl get deployments -n radius-system
+
+        
+      - name: Setup radius binary
+        uses: plinioh/setup-binary-action@v1.0.0
+        with:
+          binaryName: rad
+          binaryUrl: https://github.com/kevinz/gh_workflow/releases/download/0.01/radius.tar.gz
+          binaryPathInArchive: rad_linux_amd64
+
+
+      - name: Delete container
+        run: |
+          rad bicep download 
+          cd samples/samples/demo
+          rad resource delete containers  ${{resource_name}}
+
+
+                
