@@ -101,7 +101,7 @@ jobs:
           rad bicep download 
           cd samples/samples/demo
           rad group create ${{ inputs.resource_group }}
-          rad group switch {{ inputs.resource_group }}
+          rad group switch ${{ inputs.resource_group }}
           rad env create default 
           rad env switch default
           rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/sqldatabases:latest  --resource-type Applications.Datastores/sqlDatabases
