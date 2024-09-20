@@ -96,11 +96,21 @@ jobs:
           binaryPathInArchive: rad_linux_amd64
 
 
-      - name: Test radius Binary
+      - name: Radius deployment
         run: |
           rad bicep download 
           cd samples/samples/demo
           rad group create ${{ inputs.resource_group }}
+          rad env create default
+          rad group switch {{ inputs.resource_group }}
+          rad env switch default
+          rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/sqldatabases:latest  --resource-type Applications.Datastores/sqlDatabases
+          rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/rabbitmqqueues:latest  --resource-type Applications.Messaging/rabbitMQQueues
+          rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/secretstores:latest  --resource-type Applications.Dapr/secretStores
+          rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/statestores:latest  --resource-type Applications.Dapr/stateStores
+          rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/mongodatabases:latest --resource-type Applications.Datastores/mongoDatabases
+          rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/rediscaches:latest --resource-type Applications.Datastores/redisCaches
+          rad recipe register  default --template-kind bicep --template-path ghcr.io/radius-project/recipes/local-dev/pubsubbrokers:latest  --resource-type Applications.Dapr/pubSubBrokers
           rad deploy app.bicep -a ${{ inputs.service_name }} -g ${{ inputs.resource_group }} -e default
 
 
