@@ -15,18 +15,6 @@ jobs:
       ORG_NAME: kevinz
     runs-on: ubuntu-latest
     steps:
-          
-      - name: Clone Github Repo Action
-        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
-        with:
-          # Repository Owner
-          owner: radius-project
-          # Repository name
-          repository: samples
-          # PAT with repository scope (https://github.com/settings/tokens)
-          branch:
-            v0.37
-          access-token: ${{ secrets.ORG_ADMIN_TOKEN }}
 
       - name: Access cloned repository content
         run: |
@@ -78,8 +66,6 @@ jobs:
         run: |
           export KUBE_CONFIG_PATH=/home/runner/.kube/config
           kubectl config current-context
-          cat /home/runner/.kube/config
-          kubectl get deployments -n radius-system
 
         
       - name: Setup radius binary
@@ -92,9 +78,7 @@ jobs:
 
       - name: Delete container
         run: |
-          rad bicep download 
-          cd samples/samples/demo
-          rad resource delete containers  ${{ inputs.resource_name }}
+          rad resource delete containers  ${{ inputs.resource_name }} -g default 
 
 
                 
