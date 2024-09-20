@@ -71,7 +71,7 @@ jobs:
 
       - name: Delete container
         run: |
-          rad resource delete containers  ${{ inputs.resource_name }} -g default 
+          rad resource delete containers  ${{ inputs.resource_name }} -g default -y
 
 
                 
