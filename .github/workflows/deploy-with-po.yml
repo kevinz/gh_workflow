@@ -1,4 +1,4 @@
-name: Deploy with Kusion
+name: Deploy with PO
 on:
   workflow_dispatch:
     inputs:
